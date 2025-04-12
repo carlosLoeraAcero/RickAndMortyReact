@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
-import { ApiResponseEpisodes, AllData } from "../types";
 
 export const useFetch = <T,> (url: string) => {
     const [ data, setData ] = useState<T>();

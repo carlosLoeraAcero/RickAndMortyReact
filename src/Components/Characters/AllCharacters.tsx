@@ -4,6 +4,7 @@ import { CardCharacter } from './CardCharacter';
 import { AllData } from '../../types';
 import { Loader } from '../Loader';
 import { Pager } from '../Pager';
+import { Container, Row, Col } from './styledAll';
 
 export const AllCharacters = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
@@ -24,9 +25,9 @@ export const AllCharacters = () => {
     }, [inputSearch, currentPage]);
 
     return(
-        <div className="container">
-            <div className='row my-2'>
-                <div className="col-6 col-md-4 ms-auto">
+        <Container>
+            <Row className='my-2'>
+                <Col>
                     <input 
                         type="text" 
                         className="form-control" 
@@ -34,10 +35,10 @@ export const AllCharacters = () => {
                         value={inputSearch} 
                         onChange={(e) => setInputSearch(e.target.value)}
                     />
-                </div>
-            </div>
+                </Col>
+            </Row>
 
-            <div className="row my-4">
+            <Row className="my-4">
                 {
                     data?.results && data.results.map((character) => {
                         return(
@@ -47,12 +48,12 @@ export const AllCharacters = () => {
                 }
                 {isLoading && <Loader />}
                 {error && <div>{error}</div>}
-            </div>
+            </Row>
             <Pager
                 currentPage={currentPage}
                 totalPages={data?.info.pages || 1}
                 onPageChange={handlePageChange}
             />
-        </div>
+        </Container>
     )
 }

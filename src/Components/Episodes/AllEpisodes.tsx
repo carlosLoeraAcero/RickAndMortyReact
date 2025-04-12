@@ -4,6 +4,7 @@ import { ApiResponseEpisodes } from '../../types';
 import { CardEpisode } from './CardEpisode';
 import { Loader } from '../Loader';
 import { Pager } from '../Pager';
+import { Container, Row } from '../Characters/styledAll';
 
 export const AllEpisodes = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
@@ -15,8 +16,8 @@ export const AllEpisodes = () => {
 
     return (
         <>
-            <div className="container my-4">
-                <div className="row">
+            <Container className='my-4'>
+                <Row>
                     {
                         data?.results.map(( episode ) => {
                             return(
@@ -26,13 +27,13 @@ export const AllEpisodes = () => {
                     }
                     {isLoading && <Loader />}
                     {error && <div>{error}</div>}
-                </div>
+                </Row>
                 <Pager
                     currentPage={currentPage}
                     totalPages={data?.info.pages || 1}
                     onPageChange={handlePageChange}
                 />
-            </div>
+            </Container>
         </>
     )
 }
